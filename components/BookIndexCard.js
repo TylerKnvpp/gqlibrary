@@ -1,8 +1,9 @@
-const BookIndexCard = () => {
+const BookIndexCard = props => {
+  console.log(props);
   return (
     <a href="https://nextjs.org/docs" className="card">
-      <h3>Documentation &rarr;</h3>
-      <p>Find in-depth information about Next.js features and API.</p>
+      <h3>{props.book.title} &rarr;</h3>
+      <p>{props.book.author.name}</p>
       <style jsx>{`
         .card {
           margin: 1rem;
