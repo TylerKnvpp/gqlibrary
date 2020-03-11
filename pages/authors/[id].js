@@ -77,7 +77,7 @@ export default withData(props => {
           justify-content: space-between;
           margin-left: auto;
           margin-right: auto;
-          width: 90%;
+          width: 70%;
         }
 
         .image-cropper {
@@ -99,7 +99,7 @@ export default withData(props => {
         }
 
         .copy-container {
-          width: 75%;
+          width: 65%;
         }
 
         .books-container {

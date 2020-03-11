@@ -38,7 +38,7 @@ const AuthorCard = props => {
         .author-card-container {
           margin-left: auto;
           margin-right: auto;
-          width: 80%;
+          width: 70%;
         }
 
         .author-inline-container {

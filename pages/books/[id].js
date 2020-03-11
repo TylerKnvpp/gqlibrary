@@ -82,8 +82,10 @@ export default withData(props => {
         }
 
         .cover {
+          margin-bottom: auto;
+          margin-top: auto;
           width: auto;
-          height: auto;
+          height: 275px;
         }
 
         .book-container {
