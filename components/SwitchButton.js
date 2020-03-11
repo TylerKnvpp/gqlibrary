@@ -1,23 +1,33 @@
 const SwitchButton = props => {
   return (
     <div className="switch-container">
-      <h2
-        onClick={props.handleShowBooks}
-        className={
-          !props.showAuthors ? "switch-option-selected" : "switch-option"
-        }
-      >
-        Books
-      </h2>
-      <h2
-        onClick={props.handleShowAuthors}
-        className={
-          props.showAuthors ? "switch-option-selected" : "switch-option"
-        }
-      >
-        Authors
-      </h2>
+      <a href="#">
+        <h2
+          onClick={props.handleShowBooks}
+          className={
+            !props.showAuthors ? "switch-option-selected" : "switch-option"
+          }
+        >
+          Books
+        </h2>
+      </a>
+
+      <a href="#">
+        <h2
+          onClick={props.handleShowAuthors}
+          className={
+            props.showAuthors ? "switch-option-selected" : "switch-option"
+          }
+        >
+          Authors
+        </h2>
+      </a>
       <style jsx>{`
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
         .switch-container {
           display: flex;
           flex-direction: row;

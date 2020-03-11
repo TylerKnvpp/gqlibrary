@@ -1,7 +1,7 @@
 const OtherBooksCard = props => {
   return (
     <div>
-      <h3>More books from {props.name}</h3>
+      <h3>Books from {props.author}</h3>
       {props.books.map(book => {
         return (
           <div key={book.id}>

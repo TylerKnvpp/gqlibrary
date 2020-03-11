@@ -1,24 +1,23 @@
 import OtherBooksCard from "./OtherBooksCard";
 
-const AuthorCard = props => {
-  const picture = props.author.picture;
-  const name = props.author.name;
-  const bio = props.author.bio;
+const BookCard = props => {
+  //   const bookCollection = props.author.books.filter(
+  //     book => book.id !== props.bookID
+  //   );
 
-  const bookCollection = props.author.books.filter(
-    book => book.id !== props.bookID
-  );
+  //   console.log(bookCollection);
 
   return (
     <div>
-      <div className="image-cropper">
+      <h3>Books by {props.author}</h3>
+      {/* <div className="image-cropper">
         <img src={picture} alt={`Photo of ${name}`} className="profile-pic" />
       </div>
       <h4>{name}</h4>
       <p>{bio}</p>
       {bookCollection.length ? (
-        <OtherBooksCard author={name} books={bookCollection} />
-      ) : null}
+        <OtherBooksCard name={name} books={bookCollection} />
+      ) : null} */}
       <style jsx>{`
         .image-cropper {
           width: 100px;
@@ -39,4 +38,4 @@ const AuthorCard = props => {
   );
 };
 
-export default AuthorCard;
+export default BookCard;
