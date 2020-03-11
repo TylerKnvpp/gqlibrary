@@ -48,23 +48,93 @@ export default withData(props => {
     <Layout>
       {!query.loading ? (
         <div>
-          <img src={book.bookCover} alt={`Cover of ${book.title}`} />
-          <h1 className="title">{book.title}</h1>
-          <p>{book.summary}</p>
+          <div className="book-container">
+            <img
+              className="cover"
+              src={book.bookCover}
+              alt={`Cover of ${book.title}`}
+            />
+            <div className="details-container">
+              <h1 className="title">{book.title}</h1>
+              <h3 style={{ color: "grey" }}>{author.name}</h3>
+              <p>
+                {book.title} {book.summary}
+              </p>
+            </div>
+          </div>
           <AuthorCard author={author} bookID={book.id} />
         </div>
       ) : (
-        <h1>loading . . </h1>
+        <h1 style={{ width: "auto", marginLeft: "auto", marginRight: "auto" }}>
+          loading . .{" "}
+        </h1>
       )}
       <style jsx>{`
+        p {
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
         h3 {
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
 
+        .cover {
+          width: auto;
+          height: auto;
+        }
+
+        .book-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 3em;
+          margin-left: auto;
+          margin-right: auto;
+          width: 80%;
+        }
+
+        .details-container {
+          margin-top: auto;
+          margin-bottom: auto;
+          width: 65%;
+        }
+
         .title {
+          color: #0070f3;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        @media (max-width: 600px) {
+          .book-container {
+            flex-direction: column;
+          }
+
+          .cover {
+            width: 100%;
+            height: auto;
+          }
+
+          .details-container {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+          }
+        }
+      `}</style>
+      <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        * {
+          box-sizing: border-box;
         }
       `}</style>
     </Layout>

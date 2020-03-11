@@ -34,7 +34,9 @@ const BookList = () => {
           return <AuthorIndexCard key={author.id} author={author} />;
         })
       ) : (
-        <h1>loading...</h1>
+        <div className="grid">
+          <h1>loading...</h1>
+        </div>
       )}
       <style jsx>{`
         .grid {
@@ -44,7 +46,7 @@ const BookList = () => {
           flex-wrap: wrap;
 
           max-width: 90%;
-          margin-top: 3rem;
+          margin-top: 1rem;
         }
       `}</style>
     </div>

@@ -42,7 +42,7 @@ const BookIndexCard = props => {
             border-color: #0070f3;
           }
 
-          .card h3 {
+          .title {
             margin: 0 0 1rem 0;
             font-size: 1.5rem;
           }
@@ -65,20 +65,17 @@ const BookIndexCard = props => {
             line-height: 1.3;
           }
 
-          @media only screen and (max-width: 414px) {
+          @media only screen and (max-width: 600px) {
             .card {
               flex-direction: column;
             }
 
-            .card h3 {
-              margin: 0 0 1rem 0;
-              font-size: 1.2rem;
+            .copy-container {
+              width: 100%;
             }
 
-            .card p {
-              margin: 0;
-              font-size: 1rem;
-              line-height: 1.5;
+            .title {
+              margin-top: 1em;
             }
           }
         `}</style>

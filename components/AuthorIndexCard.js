@@ -14,11 +14,11 @@ const AuthorIndexCard = props => {
           <img src={picture} alt={`Author ${name}`} className="profile-pic" />
         </div>
         <div className="copy-container">
-          <h3 className="title">{name}</h3>
-          {/* <h3 className="title">
-            {bio.length > 30 ? bio.substring(0, 31).concat("...") : bio}{" "}
+          <h3 className="title">
+            {name.length > 20 ? name.substring(0, 21).concat("...") : name}{" "}
             &rarr;
-          </h3> */}
+          </h3>
+
           <p className="summary">{bio}</p>
           {/* <p className="author">{author}</p> */}
         </div>
@@ -41,6 +41,8 @@ const AuthorIndexCard = props => {
           .image-cropper {
             width: 200px;
             height: 200px;
+            margin-top: auto;
+            margin-bottom: auto;
             position: relative;
             overflow: hidden;
             border-radius: 50%;
@@ -60,7 +62,7 @@ const AuthorIndexCard = props => {
             border-color: #0070f3;
           }
 
-          .card h3 {
+          .title {
             margin: 0 0 1rem 0;
             font-size: 1.5rem;
           }
@@ -83,20 +85,21 @@ const AuthorIndexCard = props => {
             line-height: 1.3;
           }
 
-          @media only screen and (max-width: 414px) {
+          @media only screen and (max-width: 600px) {
             .card {
               flex-direction: column;
             }
 
-            .card h3 {
-              margin: 0 0 1rem 0;
-              font-size: 1.2rem;
+            .image-cropper {
+              height: 100px;
+              width: 100px;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 1rem;
             }
 
-            .card p {
-              margin: 0;
-              font-size: 1rem;
-              line-height: 1.5;
+            .copy-container {
+              width: 100%;
             }
           }
         `}</style>

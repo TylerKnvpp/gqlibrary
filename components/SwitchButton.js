@@ -40,6 +40,12 @@ const SwitchButton = props => {
           border-bottom-color: #0070f3;
           color: #0070f3;
         }
+
+        @media (max-width: 600px) {
+          .switch-container {
+            width: 70%;
+          }
+        }
       `}</style>
     </div>
   );
