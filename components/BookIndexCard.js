@@ -54,6 +54,8 @@ const BookIndexCard = props => {
           }
 
           .copy-container {
+            margin-top: auto;
+            margin-bottom: auto;
             width: 51%;
           }
 

@@ -2,37 +2,41 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import BookIndexCard from "./BookIndexCard";
 
-const GET_BOOKS = gql`
+const GET_AUTHORS = gql`
   query {
-    books {
+    authors {
       id
-      title
-      bookCover
-      summary
-      author {
-        name
+      name
+      bio
+      picture
+      books {
+        id
+        title
+        summary
+        bookCover
       }
     }
   }
 `;
 
-const BOOKS_PER_PAGE = 10;
+const AUTHORS_PER_PAGE = 10;
 
 const BookList = () => {
-  const { loading, errors, data } = useQuery(GET_BOOKS, {
-    variables: { skip: 0, first: BOOKS_PER_PAGE },
+  const { loading, errors, data } = useQuery(GET_AUTHORS, {
+    variables: { skip: 0, first: AUTHORS_PER_PAGE },
     notifyOnNetworkStatusChange: true
   });
 
   return (
     <div className="grid">
-      {!loading ? (
-        data.books.map(book => {
+      <h1>authors</h1>
+      {/* {data && data.data ? (
+        data.data.books.map(book => {
           return <BookIndexCard key={book.id} book={book} />;
         })
       ) : (
         <h1>loading...</h1>
-      )}
+      )} */}
       <style jsx>{`
         .grid {
           display: flex;

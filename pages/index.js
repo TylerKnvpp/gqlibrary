@@ -1,9 +1,22 @@
+import React, { useState } from "react";
 import Head from "next/head";
 import withData from "../lib/apollo";
 import BookList from "../components/BookList";
 import Layout from "../components/Layout";
+import AuthorList from "../components/AuthorList";
+import SwitchButton from "../components/SwitchButton";
 
 export default withData(props => {
+  const [showAuthors, setShowAuthors] = useState(false);
+
+  const handleShowAuthors = () => {
+    setShowAuthors(true);
+  };
+
+  const handleShowBooks = () => {
+    setShowAuthors(false);
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -13,7 +26,12 @@ export default withData(props => {
         </Head>
 
         <main>
-          <BookList />
+          <SwitchButton
+            showAuthors={showAuthors}
+            handleShowAuthors={handleShowAuthors}
+            handleShowBooks={handleShowBooks}
+          />
+          {!showAuthors ? <BookList /> : <AuthorList />}
         </main>
 
         <footer>
@@ -157,9 +175,8 @@ export default withData(props => {
           body {
             padding: 0;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
+            font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+              DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
           }
 
           * {
