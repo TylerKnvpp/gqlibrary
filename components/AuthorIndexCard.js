@@ -1,40 +1,107 @@
-const AuthorIndexCard = () => {
+import Link from "next/link";
+
+const AuthorIndexCard = props => {
+  const id = props.author.id;
+  const name = props.author.name;
+  const bio = props.author.bio;
+  const picture = props.author.picture;
+  // const books = props.author.books;
+
   return (
-    <a href="https://nextjs.org/docs" className="card">
-      <h3>Documentation &rarr;</h3>
-      <p>Find in-depth information about Next.js features and API.</p>
-      <style jsx>{`
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
+    <Link href="/authors/[id]" as={`/authors/${id}`}>
+      <a href="#" className="card">
+        <div className="image-cropper">
+          <img src={picture} alt={`Author ${name}`} className="profile-pic" />
+        </div>
+        <div className="copy-container">
+          <h3 className="title">{name}</h3>
+          {/* <h3 className="title">
+            {bio.length > 30 ? bio.substring(0, 31).concat("...") : bio}{" "}
+            &rarr;
+          </h3> */}
+          <p className="summary">{bio}</p>
+          {/* <p className="author">{author}</p> */}
+        </div>
+        <style jsx>{`
+          .card {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: 1rem;
+            padding: 1.5rem;
+            text-align: left;
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            transition: color 0.15s ease, border-color 0.15s ease;
+            width: 100%;
+          }
 
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
+          .image-cropper {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+          }
+          .profile-pic {
+            display: inline;
+            margin: 0 auto;
+            margin-left: -25%; //centers the image
+            height: 100%;
+            width: auto;
+          }
 
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
+          .card:hover,
+          .card:focus,
+          .card:active {
+            color: #0070f3;
+            border-color: #0070f3;
+          }
 
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-      `}</style>
-    </a>
+          .card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+          }
+
+          .author {
+            margin: 0;
+            font-size: 1.25rem;
+            line-height: 1.5;
+          }
+
+          .copy-container {
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 51%;
+          }
+
+          .summary {
+            color: grey;
+            font-size: 14px;
+            line-height: 1.3;
+          }
+
+          @media only screen and (max-width: 414px) {
+            .card {
+              flex-direction: column;
+            }
+
+            .card h3 {
+              margin: 0 0 1rem 0;
+              font-size: 1.2rem;
+            }
+
+            .card p {
+              margin: 0;
+              font-size: 1rem;
+              line-height: 1.5;
+            }
+          }
+        `}</style>
+      </a>
+    </Link>
   );
 };
 

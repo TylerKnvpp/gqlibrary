@@ -25,9 +25,6 @@ const SwitchButton = props => {
           width: 50%;
         }
 
-        .switch-option {
-        }
-
         .switch-option-selected {
           border-bottom-style: solid;
           border-bottom-color: #0070f3;

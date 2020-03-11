@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import BookIndexCard from "./BookIndexCard";
+import AuthorIndexCard from "./AuthorIndexCard";
 
 const GET_AUTHORS = gql`
   query {
@@ -29,14 +29,13 @@ const BookList = () => {
 
   return (
     <div className="grid">
-      <h1>authors</h1>
-      {/* {data && data.data ? (
-        data.data.books.map(book => {
-          return <BookIndexCard key={book.id} book={book} />;
+      {!loading ? (
+        data.authors.map(author => {
+          return <AuthorIndexCard key={author.id} author={author} />;
         })
       ) : (
         <h1>loading...</h1>
-      )} */}
+      )}
       <style jsx>{`
         .grid {
           display: flex;

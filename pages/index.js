@@ -7,7 +7,7 @@ import AuthorList from "../components/AuthorList";
 import SwitchButton from "../components/SwitchButton";
 
 export default withData(props => {
-  const [showAuthors, setShowAuthors] = useState(false);
+  const [showAuthors, setShowAuthors] = useState(true);
 
   const handleShowAuthors = () => {
     setShowAuthors(true);
