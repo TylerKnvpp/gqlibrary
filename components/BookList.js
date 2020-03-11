@@ -7,6 +7,8 @@ const GET_BOOKS = gql`
     books {
       id
       title
+      bookCover
+      summary
       author {
         name
       }
@@ -21,10 +23,6 @@ const BookList = () => {
     variables: { skip: 0, first: BOOKS_PER_PAGE },
     notifyOnNetworkStatusChange: true
   });
-
-  if (data && data.data) {
-    console.log(data.data.books);
-  }
 
   return (
     <div className="grid">
@@ -42,7 +40,7 @@ const BookList = () => {
           justify-content: center;
           flex-wrap: wrap;
 
-          max-width: 800px;
+          max-width: 90%;
           margin-top: 3rem;
         }
       `}</style>

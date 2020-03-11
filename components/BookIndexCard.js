@@ -1,13 +1,26 @@
 const BookIndexCard = props => {
-  console.log(props);
+  const title = props.book.title;
+  const bookCover = props.book.bookCover;
+  const author = props.book.author.name;
+  const summary = props.book.summary;
+
   return (
     <a href="https://nextjs.org/docs" className="card">
-      <h3>{props.book.title} &rarr;</h3>
-      <p>{props.book.author.name}</p>
+      <img src={bookCover} alt={`Cover of ${title}`} />
+      <div className="copy-container">
+        <h3 className="title">
+          {title.length > 30 ? title.substring(0, 31).concat("...") : title}{" "}
+          &rarr;
+        </h3>
+        <p className="summary">{summary}</p>
+        <p className="author">{author}</p>
+      </div>
       <style jsx>{`
         .card {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
           margin: 1rem;
-          flex-basis: 45%;
           padding: 1.5rem;
           text-align: left;
           color: inherit;
@@ -15,6 +28,7 @@ const BookIndexCard = props => {
           border: 1px solid #eaeaea;
           border-radius: 10px;
           transition: color 0.15s ease, border-color 0.15s ease;
+          width: 100%;
         }
 
         .card:hover,
@@ -29,10 +43,37 @@ const BookIndexCard = props => {
           font-size: 1.5rem;
         }
 
-        .card p {
+        .author {
           margin: 0;
           font-size: 1.25rem;
           line-height: 1.5;
+        }
+
+        .copy-container {
+          width: 51%;
+        }
+
+        .summary {
+          color: grey;
+          font-size: 14px;
+          line-height: 1.3;
+        }
+
+        @media only screen and (max-width: 414px) {
+          .card {
+            flex-direction: column;
+          }
+
+          .card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+          }
+
+          .card p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+          }
         }
       `}</style>
     </a>
