@@ -1,4 +1,5 @@
 import OtherBooksCard from "./OtherBooksCard";
+import Link from "next/link";
 
 const AuthorCard = props => {
   const picture = props.author.picture;
@@ -11,15 +12,25 @@ const AuthorCard = props => {
 
   return (
     <div className="author-card-container">
-      <div className="author-inline-container">
-        <div className="image-cropper">
-          <img src={picture} alt={`Photo of ${name}`} className="profile-pic" />
-        </div>
-        <div className="author-details-container">
-          <h4 className="author-name">{name}</h4>
-          <p className="author-bio">{bio.substring(0, 121).concat("...")}</p>
-        </div>
-      </div>
+      <Link href="/authors/[id]" as={`/authors/${props.author.id}`}>
+        <a style={{ textDecoration: "none", color: "black" }} href="#">
+          <div className="author-inline-container">
+            <div className="image-cropper">
+              <img
+                src={picture}
+                alt={`Photo of ${name}`}
+                className="profile-pic"
+              />
+            </div>
+            <div className="author-details-container">
+              <h4 className="author-name">{name}</h4>
+              <p className="author-bio">
+                {bio.substring(0, 121).concat("...")}
+              </p>
+            </div>
+          </div>
+        </a>
+      </Link>
       {bookCollection.length ? (
         <OtherBooksCard author={name} books={bookCollection} />
       ) : null}

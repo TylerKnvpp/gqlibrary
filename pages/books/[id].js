@@ -18,6 +18,7 @@ export default withData(props => {
         summary
         bookCover
         author {
+          id
           name
           age
           bio
