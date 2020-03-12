@@ -1,6 +1,27 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+
+const ADD_BOOK = gql`
+  mutation AddBook(
+    $title: String!
+    $genre: String!
+    $bookCover: String!
+    $summary: String!
+    $authorID: ID!
+  ) {
+    addBook(
+      title: $title
+      genre: $genre
+      bookCover: $bookCover
+      summary: $summary
+      authorID: $authorID
+    ) {
+      id
+      title
+    }
+  }
+`;
 
 const BookForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +31,7 @@ const BookForm = () => {
     summary: "",
     authorID: null
   });
+  const [addBook, { book }] = useMutation(ADD_BOOK);
 
   const GET_AUTHORS = gql`
     query {
@@ -36,10 +58,26 @@ const BookForm = () => {
     });
   }
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(formData.summary);
+
+    addBook({
+      variables: {
+        title: formData.title,
+        genre: formData.genre,
+        bookCover: formData.bookCover,
+        summary: formData.summary,
+        authorID: formData.authorID
+      }
+    });
+  };
+
   return (
     <>
       {!loading ? (
-        <form className="form-container">
+        <form className="form-container" onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="form-label">Author:</label>
             <select
@@ -96,7 +134,7 @@ const BookForm = () => {
           </div>
 
           <div className="input-group">
-            <label className="form-label">Summary:</label>
+            <label className="form-label">summary:</label>
             <textarea
               rows="7"
               cols="50"
