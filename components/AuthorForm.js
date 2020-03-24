@@ -6,11 +6,11 @@ import Link from "next/link";
 const ADD_AUTHOR = gql`
   mutation AddAuthor(
     $name: String!
-    $age: Number!
-    $bio: String!
+    $age: Int!
     $picture: String!
+    $bio: String!
   ) {
-    addAuthor(name: $name, age: $age, bio: $bio, picture: $picture) {
+    addAuthor(name: $name, age: $age, picture: $picture, bio: $bio) {
       id
       name
     }
@@ -29,12 +29,10 @@ const AuthorForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log(formData);
-
     addAuthor({
       variables: {
         name: formData.name,
-        age: parseInt(formData.age),
+        age: formData.age,
         bio: formData.bio,
         picture: formData.picture
       }
