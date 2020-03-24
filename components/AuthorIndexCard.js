@@ -50,7 +50,7 @@ const AuthorIndexCard = props => {
           .profile-pic {
             display: inline;
             margin: 0 auto;
-            margin-left: -25%; //centers the image
+            margin-left: 0%; //centers the image
             height: 100%;
             width: auto;
           }

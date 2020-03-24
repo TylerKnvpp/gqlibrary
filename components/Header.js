@@ -14,7 +14,6 @@ const Header = () => {
           padding-top: 1em;
           padding-bottom: 1em;
           box-shadow: 1px 3px 5px #d3d0d0;
-          margin-bottom: 2em;
         }
 
         a {

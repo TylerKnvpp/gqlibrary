@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import Link from "next/link";
 
 const ADD_BOOK = gql`
   mutation AddBook(
@@ -60,8 +61,6 @@ const BookForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    console.log(formData.summary);
 
     addBook({
       variables: {
@@ -134,7 +133,7 @@ const BookForm = () => {
           </div>
 
           <div className="input-group">
-            <label className="form-label">summary:</label>
+            <label className="form-label">Summary:</label>
             <textarea
               rows="7"
               cols="50"
@@ -147,16 +146,44 @@ const BookForm = () => {
             />
           </div>
 
-          <button>Add Book</button>
+          <div className="button-container">
+            <Link href="/add-new-author">
+              <a href="#">Add an author</a>
+            </Link>
+            <button>Add Book</button>
+          </div>
         </form>
       ) : (
-        <h1>loading form...</h1>
+        <h1 className="loading">loading form...</h1>
       )}
 
       <style jsx>{`
+        .loading {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          width: auto;
+        }
+
+        button:hover {
+          background: blue;
+          box-shadow: 1px 2px 4px grey;
+        }
+
+        .button-container {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-left: auto;
+          margin-right: auto;
+          width: 90%;
+        }
+
         .form-container {
           margin-left: auto;
           margin-right: auto;
+
           width: 70%;
         }
 
