@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { GET_AUTHORS } from "../lib/queries";
 import Link from "next/link";
 
 const ADD_BOOK = gql`
@@ -33,15 +34,6 @@ const BookForm = () => {
     authorID: null
   });
   const [addBook, { book }] = useMutation(ADD_BOOK);
-
-  const GET_AUTHORS = gql`
-    query {
-      authors {
-        id
-        name
-      }
-    }
-  `;
 
   const { loading, errors, data } = useQuery(GET_AUTHORS, {
     notifyOnNetworkStatusChange: true

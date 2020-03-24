@@ -4,6 +4,7 @@ import { gql } from "apollo-boost";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import OtherBooksCard from "../../components/OtherBooksCard";
+import { GET_AUTHOR } from "../../lib/queries";
 
 export default withData(props => {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default withData(props => {
             id
             title
             bookCover
-            summary 
+            summary
           }
         }
       }

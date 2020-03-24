@@ -1,29 +1,10 @@
 import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { GET_AUTHORS } from "../lib/queries";
 import AuthorIndexCard from "./AuthorIndexCard";
-
-const GET_AUTHORS = gql`
-  query {
-    authors {
-      id
-      name
-      bio
-      picture
-      books {
-        id
-        title
-        summary
-        bookCover
-      }
-    }
-  }
-`;
-
-const AUTHORS_PER_PAGE = 10;
 
 const BookList = () => {
   const { loading, errors, data } = useQuery(GET_AUTHORS, {
-    variables: { skip: 0, first: AUTHORS_PER_PAGE },
+    variables: { skip: 0, first: 10 },
     notifyOnNetworkStatusChange: true
   });
 
