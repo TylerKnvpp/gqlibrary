@@ -2,12 +2,12 @@ import Link from "next/link";
 
 const OtherBooksCard = props => {
   return (
-    <div style={{ marginTop: "3em" }}>
+    <div style={{ marginTop: "5em" }}>
       <h3 className="header">Books from {props.author}</h3>
       <div className="books-container">
         {props.books.map(book => {
           return (
-            <Link href="/books/[id]" as={`/books/${book.id}`}>
+            <Link key={book.id} href="/books/[id]" as={`/books/${book.id}`}>
               <a href="#" className="book" key={book.id}>
                 <img className="book-cover" src={book.bookCover} />
                 <p className="book-title">{book.title}</p>

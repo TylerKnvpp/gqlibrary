@@ -4,6 +4,7 @@ import { gql } from "apollo-boost";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import AuthorCard from "../../components/AuthorCard";
+import Head from "next/head";
 
 export default withData(props => {
   const router = useRouter();
@@ -49,8 +50,13 @@ export default withData(props => {
     <Layout>
       {!query.loading ? (
         <div>
+          <Head>
+            <title>{book.title}</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <div className="book-container">
             <img
+              style={{ marginTop: "2em" }}
               className="cover"
               src={book.bookCover}
               alt={`Cover of ${book.title}`}
@@ -92,9 +98,10 @@ export default withData(props => {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          margin-bottom: 3em;
+          margin-bottom: 5em;
           margin-left: auto;
           margin-right: auto;
+          margin-top: 5em;
           width: 80%;
         }
 
@@ -113,6 +120,7 @@ export default withData(props => {
         @media (max-width: 600px) {
           .book-container {
             flex-direction: column;
+            margin-top: 2em;
           }
 
           .cover {

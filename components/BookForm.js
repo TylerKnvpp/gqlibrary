@@ -114,6 +114,7 @@ const BookForm = () => {
           <div className="input-group">
             <label className="form-label">Book Cover URL:</label>
             <input
+              placeholder="Please use image URL's from barnesandnoble.com"
               className="form-input"
               onChange={e =>
                 setFormData({

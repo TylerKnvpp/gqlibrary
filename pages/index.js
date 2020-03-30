@@ -5,9 +5,11 @@ import BookList from "../components/BookList";
 import Layout from "../components/Layout";
 import AuthorList from "../components/AuthorList";
 import SwitchButton from "../components/SwitchButton";
+import FilterButton from "../components/FilterButton";
 
 export default withData(props => {
   const [showAuthors, setShowAuthors] = useState(false);
+  const [ascendingState, setAscendingState] = useState(true);
 
   const handleShowAuthors = () => {
     setShowAuthors(true);
@@ -15,6 +17,14 @@ export default withData(props => {
 
   const handleShowBooks = () => {
     setShowAuthors(false);
+  };
+
+  const setDescending = () => {
+    setAscendingState(false);
+  };
+
+  const setAscending = () => {
+    setAscendingState(true);
   };
 
   return (
@@ -25,13 +35,22 @@ export default withData(props => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main>
+        <main style={{ width: "100%" }}>
           <SwitchButton
             showAuthors={showAuthors}
             handleShowAuthors={handleShowAuthors}
             handleShowBooks={handleShowBooks}
           />
-          {!showAuthors ? <BookList /> : <AuthorList />}
+          <FilterButton
+            ascendingState={ascendingState}
+            setDescending={setDescending}
+            setAscending={setAscending}
+          />
+          {!showAuthors ? (
+            <BookList ascendingState={ascendingState} />
+          ) : (
+            <AuthorList />
+          )}
         </main>
 
         <footer>

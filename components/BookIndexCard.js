@@ -10,16 +10,23 @@ const BookIndexCard = props => {
   return (
     <Link href="/books/[id]" as={`/books/${id}`}>
       <a href="#" className="card">
-        <img src={bookCover} alt={`Cover of ${title}`} />
+        <img className="book-cover" src={bookCover} alt={`Cover of ${title}`} />
         <div className="copy-container">
           <h3 className="title">
             {title.length > 30 ? title.substring(0, 31).concat("...") : title}{" "}
             &rarr;
           </h3>
-          <p className="summary">{summary}</p>
+          <p className="summary">{summary.substring(0, 221).concat(" ...")}</p>
           <p className="author">{author}</p>
         </div>
         <style jsx>{`
+          .book-cover {
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+          }
+
           .card {
             display: flex;
             flex-direction: row;
@@ -66,8 +73,21 @@ const BookIndexCard = props => {
           }
 
           @media only screen and (max-width: 600px) {
+            .title {
+              margin: 0 0 1rem 0;
+              font-size: 1rem;
+            }
+
+            .book-cover {
+              height: auto;
+              margin-left: auto;
+              margin-right: auto;
+              width: 200px;
+            }
+
             .card {
               flex-direction: column;
+              width: 90%;
             }
 
             .copy-container {

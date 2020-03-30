@@ -1,17 +1,31 @@
+import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_AUTHORS } from "../lib/queries";
 import AuthorIndexCard from "./AuthorIndexCard";
+import _ from "lodash";
 
 const BookList = () => {
+  const [authorsCollection, setAuthorsCollection] = useState([]);
   const { loading, errors, data } = useQuery(GET_AUTHORS, {
     variables: { skip: 0, first: 10 },
     notifyOnNetworkStatusChange: true
   });
 
+  if (!loading && !authorsCollection.length) {
+    const clone = _.clone(data.authors);
+    const azCollection = _.sortBy(clone, [
+      function(o) {
+        return o.name;
+      }
+    ]);
+
+    setAuthorsCollection(azCollection);
+  }
+
   return (
     <div className="grid">
       {!loading ? (
-        data.authors.map(author => {
+        authorsCollection.map(author => {
           return <AuthorIndexCard key={author.id} author={author} />;
         })
       ) : (

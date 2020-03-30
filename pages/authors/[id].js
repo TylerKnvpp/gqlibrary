@@ -4,7 +4,7 @@ import { gql } from "apollo-boost";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import OtherBooksCard from "../../components/OtherBooksCard";
-import { GET_AUTHOR } from "../../lib/queries";
+import Head from "next/head";
 
 export default withData(props => {
   const router = useRouter();
@@ -36,6 +36,10 @@ export default withData(props => {
     <Layout>
       {!loading ? (
         <div>
+          <Head>
+            <title>{data.author.name}</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <div className="inline-container">
             <div className="image-cropper">
               <img
@@ -78,6 +82,7 @@ export default withData(props => {
           justify-content: space-between;
           margin-left: auto;
           margin-right: auto;
+          margin-top: 5em;
           width: 70%;
         }
 
@@ -94,7 +99,7 @@ export default withData(props => {
         .profile-pic {
           display: inline;
           margin: 0 auto;
-          margin-left: -25%; //centers the image
+          margin-left: 0%; //centers the image
           height: 100%;
           width: auto;
         }
@@ -106,14 +111,21 @@ export default withData(props => {
         .books-container {
           margin-left: auto;
           margin-right: auto;
+
           width: 70%;
         }
 
         @media (max-width: 600px) {
+          .copy-container {
+            text-align: center;
+            width: 85%;
+          }
+
           .inline-container {
             flex-direction: column;
             margin-left: auto;
             margin-right: auto;
+            margin-top: 3em;
             width: 90%;
           }
 

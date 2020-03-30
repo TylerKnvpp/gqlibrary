@@ -19,8 +19,7 @@ const AuthorIndexCard = props => {
             &rarr;
           </h3>
 
-          <p className="summary">{bio}</p>
-          {/* <p className="author">{author}</p> */}
+          <p className="summary">{bio.substring(0, 121).concat(" ...")}</p>
         </div>
         <style jsx>{`
           .card {
