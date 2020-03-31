@@ -19,7 +19,10 @@ const AuthorIndexCard = props => {
             &rarr;
           </h3>
 
-          <p className="summary">{bio.substring(0, 121).concat(" ...")}</p>
+          <p className="summary">
+            {" "}
+            {bio.length > 121 ? bio.substring(0, 121).concat("...") : bio}
+          </p>
         </div>
         <style jsx>{`
           .card {

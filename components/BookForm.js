@@ -54,16 +54,35 @@ const BookForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (
+      formData.title &&
+      formData.genre &&
+      formData.bookCover &&
+      formData.summary &&
+      formData.authorID
+    ) {
+      addBook({
+        variables: {
+          title: formData.title,
+          genre: formData.genre,
+          bookCover: formData.bookCover,
+          summary: formData.summary,
+          authorID: formData.authorID
+        }
+      });
 
-    addBook({
-      variables: {
-        title: formData.title,
-        genre: formData.genre,
-        bookCover: formData.bookCover,
-        summary: formData.summary,
-        authorID: formData.authorID
-      }
-    });
+      alert(`${formData.title} has been submitted!`);
+
+      setFormData({
+        title: "",
+        genre: "",
+        bookCover: "",
+        summary: "",
+        authorID: null
+      });
+    } else {
+      alert("Please fill out all fields.");
+    }
   };
 
   return (
@@ -144,6 +163,7 @@ const BookForm = () => {
             <Link href="/add-new-author">
               <a href="#">Add an author</a>
             </Link>
+
             <button>Add Book</button>
           </div>
         </form>

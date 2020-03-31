@@ -25,7 +25,7 @@ const AuthorCard = props => {
             <div className="author-details-container">
               <h4 className="author-name">{name}</h4>
               <p className="author-bio">
-                {bio.substring(0, 121).concat("...")}
+                {bio.length > 121 ? bio.substring(0, 121).concat("...") : bio}
               </p>
             </div>
           </div>

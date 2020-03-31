@@ -28,15 +28,27 @@ const AuthorForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (formData.name && formData.age && formData.bio && formData.picture) {
+      addAuthor({
+        variables: {
+          name: formData.name,
+          age: formData.age,
+          bio: formData.bio,
+          picture: formData.picture
+        }
+      });
 
-    addAuthor({
-      variables: {
-        name: formData.name,
-        age: formData.age,
-        bio: formData.bio,
-        picture: formData.picture
-      }
-    });
+      alert(`${formData.name} has been added.`);
+
+      setFormData({
+        name: "",
+        age: null,
+        bio: "",
+        picture: ""
+      });
+    } else {
+      alert("Please fill out all required fields.");
+    }
   };
 
   return (
