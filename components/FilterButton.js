@@ -67,7 +67,7 @@ const FilterButton = props => {
           align-items: center;
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: space-evenly;
           width: 80%;
         }
 
