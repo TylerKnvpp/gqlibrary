@@ -1,10 +1,15 @@
 import Layout from "../components/Layout";
 import AuthorForm from "../components/AuthorForm";
 import withData from "../lib/apollo";
+import Head from "next/head";
 
 export default withData(props => {
   return (
     <Layout>
+      <Head>
+        <title>Add an Author</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1
         style={{
           marginLeft: "auto",

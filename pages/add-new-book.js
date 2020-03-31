@@ -1,10 +1,15 @@
 import Layout from "../components/Layout";
 import BookForm from "../components/BookForm";
 import withData from "../lib/apollo";
+import Head from "next/head";
 
 export default withData(props => {
   return (
     <Layout>
+      <Head>
+        <title>Add a Book</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1
         style={{
           marginLeft: "auto",
