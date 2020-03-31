@@ -41,13 +41,16 @@ export default withData(props => {
             handleShowAuthors={handleShowAuthors}
             handleShowBooks={handleShowBooks}
           />
-          <FilterButton
-            ascendingState={ascendingState}
-            setDescending={setDescending}
-            setAscending={setAscending}
-          />
+
           {!showAuthors ? (
-            <BookList ascendingState={ascendingState} />
+            <>
+              <FilterButton
+                ascendingState={ascendingState}
+                setDescending={setDescending}
+                setAscending={setAscending}
+              />
+              <BookList ascendingState={ascendingState} />
+            </>
           ) : (
             <AuthorList />
           )}

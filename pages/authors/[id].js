@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import OtherBooksCard from "../../components/OtherBooksCard";
 import Head from "next/head";
+import { SpinnerCircular } from "spinners-react";
 
 export default withData(props => {
   const router = useRouter();
@@ -63,7 +64,12 @@ export default withData(props => {
           </div>
         </div>
       ) : (
-        <h1>loading . . </h1>
+        <SpinnerCircular
+          color="#3870ad"
+          size={50}
+          speed={100}
+          thickness={100}
+        />
       )}
       <style jsx>{`
         h3 {

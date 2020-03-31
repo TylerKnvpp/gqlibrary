@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import AuthorCard from "../../components/AuthorCard";
 import Head from "next/head";
+import { SpinnerCircular } from "spinners-react";
 
 export default withData(props => {
   const router = useRouter();
@@ -72,9 +73,14 @@ export default withData(props => {
           <AuthorCard author={author} bookID={book.id} />
         </div>
       ) : (
-        <h1 style={{ width: "auto", marginLeft: "auto", marginRight: "auto" }}>
-          loading . .{" "}
-        </h1>
+        <div className="loading">
+          <SpinnerCircular
+            color="#3870ad"
+            size={50}
+            speed={100}
+            thickness={100}
+          />
+        </div>
       )}
       <style jsx>{`
         p {
@@ -85,6 +91,13 @@ export default withData(props => {
         h3 {
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        .loading {
+          align-items: center;
+          align-content: center;
+          height: 100%;
+          width: 100%;
         }
 
         .cover {

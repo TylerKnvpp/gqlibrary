@@ -4,30 +4,33 @@ const FilterButton = props => {
   const [inputState, setInput] = useState("");
 
   return (
-    <div className="switch-container">
-      <a href="#">
-        <h2
-          onClick={props.setAscending}
-          className={
-            props.ascendingState ? "switch-option-selected" : "switch-option"
-          }
-        >
-          A-Z
-        </h2>
-      </a>
+    <div className="filter-container">
+      <div className="asc-desc-container">
+        <a href="#">
+          <h3
+            onClick={props.setAscending}
+            className={
+              props.ascendingState ? "filter-option-selected" : "filter-option"
+            }
+          >
+            A-Z
+          </h3>
+        </a>
 
-      <a href="#">
-        <h2
-          onClick={props.setDescending}
-          className={
-            !props.ascendingState ? "switch-option-selected" : "switch-option"
-          }
-        >
-          Z-A
-        </h2>
-      </a>
+        <a href="#">
+          <h3
+            onClick={props.setDescending}
+            className={
+              !props.ascendingState ? "filter-option-selected" : "filter-option"
+            }
+          >
+            Z-A
+          </h3>
+        </a>
+      </div>
 
       <form>
+        <label className="input-label">Search by Title</label>
         <input
           className="search-input"
           value={inputState}
@@ -41,6 +44,17 @@ const FilterButton = props => {
           text-decoration: none;
         }
 
+        .input-label {
+          margin: 0.5em;
+        }
+
+        .asc-desc-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          width: 50%;
+        }
+
         .search-input {
           background: #f2f2f2;
           border: none;
@@ -49,23 +63,37 @@ const FilterButton = props => {
           width: 10rem;
         }
 
-        .switch-container {
+        .filter-container {
           align-items: center;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          width: 50%;
+          width: 80%;
         }
 
-        .switch-option-selected {
+        .filter-option-selected {
           border-bottom-style: solid;
           border-bottom-color: #0070f3;
           color: #0070f3;
         }
 
         @media (max-width: 600px) {
-          .switch-container {
+          .filter-container {
+            flex-direction: column;
             width: 70%;
+          }
+
+          .search-input {
+            width: 90%;
+          }
+
+          .asc-desc-container {
+            justify-content: space-between;
+            width: 85%;
+          }
+
+          .search-input {
+            margin-top: 0.5em;
           }
         }
       `}</style>

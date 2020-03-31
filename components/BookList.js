@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_BOOKS } from "../lib/queries";
 import BookIndexCard from "./BookIndexCard";
 import _ from "lodash";
+import { SpinnerCircular } from "spinners-react";
 
 const BookList = props => {
   const [booksCollection, setBooksCollection] = useState([]);
@@ -47,7 +48,12 @@ const BookList = props => {
         })
       ) : (
         <div className="grid">
-          <h1>loading...</h1>
+          <SpinnerCircular
+            color="#3870ad"
+            size={50}
+            speed={100}
+            thickness={100}
+          />
         </div>
       )}
       <style jsx>{`

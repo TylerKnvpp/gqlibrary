@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { GET_AUTHORS } from "../lib/queries";
 import Link from "next/link";
+import { SpinnerCircular } from "spinners-react";
 
 const ADD_BOOK = gql`
   mutation AddBook(
@@ -147,7 +148,12 @@ const BookForm = () => {
           </div>
         </form>
       ) : (
-        <h1 className="loading">loading form...</h1>
+        <SpinnerCircular
+          color="#3870ad"
+          size={50}
+          speed={100}
+          thickness={100}
+        />
       )}
 
       <style jsx>{`
