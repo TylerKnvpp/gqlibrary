@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import withData from "../../lib/apollo";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import { SpinnerCircular } from "spinners-react";
 import { GET_AUTHOR } from "./../../lib/queries";
 
 export default withData((props) => {
+  const [authorState, setAuthorState] = useState();
   const router = useRouter();
   const authorID = router.query.id;
 
@@ -18,33 +20,37 @@ export default withData((props) => {
     notifyOnNetworkStatusChange: true,
   });
 
+  if (!loading && !authorState) {
+    setAuthorState(data.author);
+  }
+
   return (
     <Layout>
-      {!loading ? (
+      {!loading && authorState ? (
         <div>
           <Head>
-            <title>{data.author.name}</title>
+            <title>{authorState.name}</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <div className="inline-container">
             <div className="image-cropper">
               <img
                 className="profile-pic"
-                src={data.author.picture}
-                alt={`Photo of author ${data.author.picture}`}
+                src={authorState.picture}
+                alt={`Photo of author ${authorState.picture}`}
               />
             </div>
 
             <div className="copy-container">
-              <h1 className="title">{data.author.name}</h1>
-              <p>{data.author.bio}</p>
+              <h1 className="title">{authorState.name}</h1>
+              <p>{authorState.bio}</p>
             </div>
           </div>
 
           <div className="books-container">
             <OtherBooksCard
-              author={data.author.name}
-              books={data.author.books}
+              author={authorState.name}
+              books={authorState.books}
             />
           </div>
         </div>
