@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import withData from "../../lib/apollo";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
@@ -8,48 +9,47 @@ import { SpinnerCircular } from "spinners-react";
 import { GET_BOOK } from "./../../lib/queries";
 
 export default withData((props) => {
+  const [bookState, setBookState] = useState();
+  const [authorState, setAuthorState] = useState();
   const router = useRouter();
   const bookID = router.query.id;
 
-  const query = useQuery(GET_BOOK, {
+  const { loading, data, errors } = useQuery(GET_BOOK, {
     variables: {
       id: bookID,
     },
     notifyOnNetworkStatusChange: true,
   });
 
-  let book;
-  let author;
-
-  if (!query.loading) {
-    book = query.data.book;
-    author = book.author;
+  if (!loading && !bookState && !authorState) {
+    setBookState(data.book);
+    setAuthorState(data.book.author);
   }
 
   return (
     <Layout>
-      {!query.loading ? (
+      {!loading && bookState ? (
         <div>
           <Head>
-            <title>{book.title}</title>
+            <title>{bookState.title}</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <div className="book-container">
             <img
               style={{ marginTop: "2em" }}
               className="cover"
-              src={book.bookCover}
-              alt={`Cover of ${book.title}`}
+              src={bookState.bookCover}
+              alt={`Cover of ${bookState.title}`}
             />
             <div className="details-container">
-              <h1 className="title">{book.title}</h1>
-              <h3 style={{ color: "grey" }}>{author.name}</h3>
+              <h1 className="title">{bookState.title}</h1>
+              <h3 style={{ color: "grey" }}>{authorState.name}</h3>
               <p>
-                {book.title} {book.summary}
+                {bookState.title} {bookState.summary}
               </p>
             </div>
           </div>
-          <AuthorCard author={author} bookID={book.id} />
+          <AuthorCard author={authorState} bookID={bookState.id} />
         </div>
       ) : (
         <div className="loading">
