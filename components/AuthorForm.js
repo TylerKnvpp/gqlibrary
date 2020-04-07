@@ -1,32 +1,18 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { ADD_AUTHOR } from "../lib/mutations";
 import Link from "next/link";
-
-const ADD_AUTHOR = gql`
-  mutation AddAuthor(
-    $name: String!
-    $age: Int!
-    $picture: String!
-    $bio: String!
-  ) {
-    addAuthor(name: $name, age: $age, picture: $picture, bio: $bio) {
-      id
-      name
-    }
-  }
-`;
 
 const AuthorForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     age: 0,
     bio: "",
-    picture: ""
+    picture: "",
   });
   const [addAuthor, { author }] = useMutation(ADD_AUTHOR);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.name && formData.age && formData.bio && formData.picture) {
       addAuthor({
@@ -34,8 +20,8 @@ const AuthorForm = () => {
           name: formData.name,
           age: formData.age,
           bio: formData.bio,
-          picture: formData.picture
-        }
+          picture: formData.picture,
+        },
       });
 
       alert(`${formData.name} has been added.`);
@@ -44,7 +30,7 @@ const AuthorForm = () => {
         name: "",
         age: null,
         bio: "",
-        picture: ""
+        picture: "",
       });
     } else {
       alert("Please fill out all required fields.");
@@ -58,10 +44,10 @@ const AuthorForm = () => {
           <label className="form-label">Name:</label>
           <input
             className="form-input"
-            onChange={e =>
+            onChange={(e) =>
               setFormData({
                 ...formData,
-                name: e.target.value
+                name: e.target.value,
               })
             }
           />
@@ -71,10 +57,10 @@ const AuthorForm = () => {
           <label className="form-label">Age:</label>
           <input
             className="form-input"
-            onChange={e =>
+            onChange={(e) =>
               setFormData({
                 ...formData,
-                age: parseInt(e.target.value)
+                age: parseInt(e.target.value),
               })
             }
           />
@@ -84,10 +70,10 @@ const AuthorForm = () => {
           <label className="form-label">Picture URL:</label>
           <input
             className="form-input"
-            onChange={e =>
+            onChange={(e) =>
               setFormData({
                 ...formData,
-                picture: e.target.value
+                picture: e.target.value,
               })
             }
           />
@@ -98,10 +84,10 @@ const AuthorForm = () => {
           <textarea
             rows="7"
             cols="50"
-            onChange={e =>
+            onChange={(e) =>
               setFormData({
                 ...formData,
-                bio: e.target.value
+                bio: e.target.value,
               })
             }
           />

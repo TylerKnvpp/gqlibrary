@@ -1,6 +1,5 @@
 import withData from "../../lib/apollo";
 import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import OtherBooksCard from "../../components/OtherBooksCard";

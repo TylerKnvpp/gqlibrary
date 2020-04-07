@@ -1,30 +1,9 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { ADD_BOOK } from "../lib/mutations";
 import { GET_AUTHORS } from "../lib/queries";
 import Link from "next/link";
 import { SpinnerCircular } from "spinners-react";
-
-const ADD_BOOK = gql`
-  mutation AddBook(
-    $title: String!
-    $genre: String!
-    $bookCover: String!
-    $summary: String!
-    $authorID: ID!
-  ) {
-    addBook(
-      title: $title
-      genre: $genre
-      bookCover: $bookCover
-      summary: $summary
-      authorID: $authorID
-    ) {
-      id
-      title
-    }
-  }
-`;
 
 const BookForm = () => {
   const [formData, setFormData] = useState({
@@ -32,18 +11,18 @@ const BookForm = () => {
     genre: "",
     bookCover: "",
     summary: "",
-    authorID: null
+    authorID: null,
   });
   const [addBook, { book }] = useMutation(ADD_BOOK);
 
   const { loading, errors, data } = useQuery(GET_AUTHORS, {
-    notifyOnNetworkStatusChange: true
+    notifyOnNetworkStatusChange: true,
   });
 
   let renderOptions;
 
   if (!loading) {
-    renderOptions = data.authors.map(author => {
+    renderOptions = data.authors.map((author) => {
       return (
         <option key={author.id} value={author.id}>
           {author.name}
@@ -52,7 +31,7 @@ const BookForm = () => {
     });
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (
       formData.title &&
@@ -67,8 +46,8 @@ const BookForm = () => {
           genre: formData.genre,
           bookCover: formData.bookCover,
           summary: formData.summary,
-          authorID: formData.authorID
-        }
+          authorID: formData.authorID,
+        },
       });
 
       alert(`${formData.title} has been submitted!`);
@@ -78,7 +57,7 @@ const BookForm = () => {
         genre: "",
         bookCover: "",
         summary: "",
-        authorID: null
+        authorID: null,
       });
     } else {
       alert("Please fill out all fields.");
@@ -87,16 +66,16 @@ const BookForm = () => {
 
   return (
     <>
-      {!loading ? (
+      {!loading && !errors ? (
         <form className="form-container" onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="form-label">Author:</label>
             <select
               className="form-select"
-              onChange={e =>
+              onChange={(e) =>
                 setFormData({
                   ...formData,
-                  authorID: e.target.value
+                  authorID: e.target.value,
                 })
               }
             >
@@ -109,10 +88,10 @@ const BookForm = () => {
             <label className="form-label">Title:</label>
             <input
               className="form-input"
-              onChange={e =>
+              onChange={(e) =>
                 setFormData({
                   ...formData,
-                  title: e.target.value
+                  title: e.target.value,
                 })
               }
             />
@@ -122,10 +101,10 @@ const BookForm = () => {
             <label className="form-label">Genre:</label>
             <input
               className="form-input"
-              onChange={e =>
+              onChange={(e) =>
                 setFormData({
                   ...formData,
-                  genre: e.target.value
+                  genre: e.target.value,
                 })
               }
             />
@@ -136,10 +115,10 @@ const BookForm = () => {
             <input
               placeholder="Please use image URL's from barnesandnoble.com"
               className="form-input"
-              onChange={e =>
+              onChange={(e) =>
                 setFormData({
                   ...formData,
-                  bookCover: e.target.value
+                  bookCover: e.target.value,
                 })
               }
             />
@@ -150,10 +129,10 @@ const BookForm = () => {
             <textarea
               rows="7"
               cols="50"
-              onChange={e =>
+              onChange={(e) =>
                 setFormData({
                   ...formData,
-                  summary: e.target.value
+                  summary: e.target.value,
                 })
               }
             />
