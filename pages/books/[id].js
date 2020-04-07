@@ -6,37 +6,17 @@ import Layout from "../../components/Layout";
 import AuthorCard from "../../components/AuthorCard";
 import Head from "next/head";
 import { SpinnerCircular } from "spinners-react";
+import { GET_BOOK } from "./../../lib/queries";
 
-export default withData(props => {
+export default withData((props) => {
   const router = useRouter();
   const bookID = router.query.id;
 
-  const GET_BOOK = gql`
-    {
-      book(id: "${bookID}") {
-        id
-        title
-        genre
-        summary
-        bookCover
-        author {
-          id
-          name
-          age
-          bio
-          picture
-          books {
-            id
-            title
-            bookCover
-          }
-        }
-      }
-    }
-  `;
-
   const query = useQuery(GET_BOOK, {
-    notifyOnNetworkStatusChange: true
+    variables: {
+      id: bookID,
+    },
+    notifyOnNetworkStatusChange: true,
   });
 
   let book;

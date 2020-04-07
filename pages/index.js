@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import withData from "../lib/apollo";
 import BookList from "../components/BookList";
@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import AuthorList from "../components/AuthorList";
 import SwitchButton from "../components/SwitchButton";
 import FilterButton from "../components/FilterButton";
+import { useFetch } from "../hooks/useFetch";
 
 export default withData(props => {
   const [showAuthors, setShowAuthors] = useState(false);
@@ -26,6 +27,12 @@ export default withData(props => {
   const setAscending = () => {
     setAscendingState(true);
   };
+
+  useEffect(() => {
+    useFetch().then(data => {
+      console.log(data);
+    });
+  }, []);
 
   return (
     <Layout>
