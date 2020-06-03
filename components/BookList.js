@@ -5,20 +5,20 @@ import BookIndexCard from "./BookIndexCard";
 import _ from "lodash";
 import { SpinnerCircular } from "spinners-react";
 
-const BookList = props => {
+const BookList = (props) => {
   const [booksCollection, setBooksCollection] = useState([]);
   const [descendingState, setDescendingState] = useState(false);
   const { loading, errors, data } = useQuery(GET_BOOKS, {
     variables: { skip: 0, first: 10 },
-    notifyOnNetworkStatusChange: true
+    notifyOnNetworkStatusChange: true,
   });
 
-  const setAscending = array => {
+  const setAscending = (array) => {
     const clone = _.clone(array.books);
     return _.orderBy(clone, ["title"], ["asc"]);
   };
 
-  const setDescending = array => {
+  const setDescending = (array) => {
     const clone = _.clone(array.books);
     return _.orderBy(clone, ["title"], ["desc"]);
   };
@@ -42,12 +42,12 @@ const BookList = props => {
 
   return (
     <div className="grid">
-      {!loading ? (
-        booksCollection.map(book => {
+      {!loading && data ? (
+        booksCollection.map((book) => {
           return <BookIndexCard key={book.id} book={book} />;
         })
       ) : (
-        <div className="grid">
+        <div className="loading">
           <SpinnerCircular
             color="#3870ad"
             size={50}
@@ -64,6 +64,18 @@ const BookList = props => {
           flex-wrap: wrap;
           max-width: 90%;
           margin-top: 1rem;
+        }
+
+        .loading {
+          align-items: center;
+          align-content: center;
+          display: flex;
+          justify-content: center;
+          margin-left: auto;
+          margin-top: 10em;
+          margin-right: auto;
+          height: auto;
+          width: auto;
         }
       `}</style>
     </div>

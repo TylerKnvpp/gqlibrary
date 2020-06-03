@@ -6,9 +6,8 @@ import Layout from "../components/Layout";
 import AuthorList from "../components/AuthorList";
 import SwitchButton from "../components/SwitchButton";
 import FilterButton from "../components/FilterButton";
-import { useFetch } from "../hooks/useFetch";
 
-export default withData(props => {
+export default withData((props) => {
   const [showAuthors, setShowAuthors] = useState(false);
   const [ascendingState, setAscendingState] = useState(true);
 
@@ -27,12 +26,6 @@ export default withData(props => {
   const setAscending = () => {
     setAscendingState(true);
   };
-
-  useEffect(() => {
-    useFetch().then(data => {
-      console.log(data);
-    });
-  }, []);
 
   return (
     <Layout>
