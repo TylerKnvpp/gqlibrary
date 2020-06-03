@@ -75,8 +75,13 @@ export default withData((props) => {
         .loading {
           align-items: center;
           align-content: center;
-          height: 100%;
-          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-left: auto;
+          margin-top: 10em;
+          margin-right: auto;
+          height: auto;
+          width: auto;
         }
 
         .cover {

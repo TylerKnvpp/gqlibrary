@@ -55,12 +55,14 @@ export default withData((props) => {
           </div>
         </div>
       ) : (
-        <SpinnerCircular
-          color="#3870ad"
-          size={50}
-          speed={100}
-          thickness={100}
-        />
+        <div className="loading">
+          <SpinnerCircular
+            color="#3870ad"
+            size={50}
+            speed={100}
+            thickness={100}
+          />
+        </div>
       )}
       <style jsx>{`
         h3 {
@@ -71,6 +73,18 @@ export default withData((props) => {
         .title {
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        .loading {
+          align-items: center;
+          align-content: center;
+          display: flex;
+          justify-content: center;
+          margin-left: auto;
+          margin-top: 10em;
+          margin-right: auto;
+          height: auto;
+          width: auto;
         }
 
         .inline-container {
